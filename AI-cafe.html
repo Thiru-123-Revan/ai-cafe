@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Café | Sip Beyond Imagination</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brown: #39251d;
+  --orange: #c47b46;
+  --cream: #f8f3eb;
+  --light: #fffdf9;
+  --muted: #8b8178;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+button, input, select {
+  font: inherit;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: var(--light);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 3px 15px #00000008;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--brown);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--orange);
+}
+
+.hero {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding: 80px 9%;
+  color: white;
+  background:
+  linear-gradient(90deg, #21130fe8, #21130f50),
+  url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1800') center/cover;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.tag {
+  color: #f0b77e;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(43px, 7vw, 76px);
+  line-height: 1.12;
+  margin: 22px 0;
+}
+
+.hero h1 span {
+  color: #e7a46c;
+}
+
+.hero p {
+  color: #eee0d4;
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: var(--orange);
+  color: white;
+  padding: 15px 27px;
+  border-radius: 7px;
+  margin-top: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #9f5d31;
+  transform: translateY(-3px);
+}
+
+.section {
+  padding: 80px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  margin: 12px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.menu-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .3s;
+  box-shadow: 0 5px 25px #00000009;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+}
+
+.menu-info {
+  padding: 22px;
+}
+
+.menu-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.menu-info p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.price {
+  color: var(--orange);
+  font-weight: 800;
+  margin-top: 14px;
+  display: block;
+}
+
+.creator {
+  background: #eadcc9;
+}
+
+.creator-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: stretch;
+}
+
+.panel {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px #0000000c;
+}
+
+.panel h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 18px 0 9px;
+}
+
+select, input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #e2d6c9;
+  border-radius: 7px;
+  background: #fffdf9;
+  outline: none;
+}
+
+select:focus, input:focus {
+  border-color: var(--orange);
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.ingredient {
+  padding: 12px;
+  background: #faf5ee;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ingredient input {
+  accent-color: var(--orange);
+}
+
+.generate {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.result {
+  display: none;
+  margin-top: 22px;
+  padding: 22px;
+  border-radius: 12px;
+  background: #f8efe4;
+  line-height: 1.8;
+  animation: appear .5s;
+}
+
+.result h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: #a65f32;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.preview {
+  min-height: 400px;
+  border-radius: 15px;
+  background:
+  linear-gradient(#25171099,#25171099),
+  url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: white;
+}
+
+.preview-box {
+  border: 1px solid #e8c7a5;
+  outline: 1px solid #e8c7a5;
+  outline-offset: 7px;
+  padding: 35px 25px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  background: #39251dcc;
+}
+
+.preview-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin: 12px 0;
+}
+
+.preview-box .line {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px dotted #e8c7a5;
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  background: var(--brown);
+  color: white;
+}
+
+footer p {
+  margin-top: 10px;
+  color: #c7b4a6;
+  font-size: 13px;
+}
+
+@media(max-width: 800px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .creator-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width: 550px) {
+  nav {
+    padding: 17px 5%;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding: 55px 7%;
+  }
+
+  .section {
+    padding: 60px 5%;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">AI <span>CAFÉ.</span></div>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#create">Create</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">Welcome to the future of coffee</div>
+
+    <h1>Sip Beyond <span>Imagination.</span></h1>
+
+    <p>
+      Discover extraordinary flavours, mix unexpected
+      ingredients and create your own signature drinks
+      with our interactive AI Café experience.
+    </p>
+
+    <a href="#create" class="btn">Create Your Drink ↗</a>
+  </div>
+</section>
+
+<!-- MENU -->
+
+<section class="section" id="menu">
+
+  <div class="section-heading">
+    <div class="tag">Our Signature Collection</div>
+    <h2>Crafted With Creativity</h2>
+    <p>Explore our special collection of magical drinks.</p>
+  </div>
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=700"
+      alt="Iced coffee">
+      <div class="menu-info">
+        <h3>Caramel Cloud</h3>
+        <p>Rich coffee blended with creamy caramel and ice.</p>
+        <span class="price">₹149</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=700"
+      alt="Milkshake">
+      <div class="menu-info">
+        <h3>Chocolate Dream</h3>
+        <p>Chocolate, milk and a delicious creamy finish.</p>
+        <span class="price">₹169</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=700"
+      alt="Iced tea">
+      <div class="menu-info">
+        <h3>Berry Splash</h3>
+        <p>A refreshing fruity drink with a sweet twist.</p>
+        <span class="price">₹139</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DRINK CREATOR -->
+
+<section class="section creator" id="create">
+
+  <div class="section-heading">
+    <div class="tag">Your Personal Drink Lab</div>
+    <h2>Build Your Own Magic</h2>
+    <p>Experiment with flavours and create something unique.</p>
+  </div>
+
+  <div class="creator-layout">
+
+    <div class="panel">
+
+      <h3>🥤 Drink Creator</h3>
+
+      <label>Choose Your Drink</label>
+      <select id="drink">
+        <option value="Coffee">Coffee</option>
+        <option value="Milkshake">Milkshake</option>
+        <option value="Smoothie">Smoothie</option>
+        <option value="Iced Tea">Iced Tea</option>
+        <option value="Mocktail">Mocktail</option>
+      </select>
+
+      <label>Choose Ingredients</label>
+
+      <div class="ingredients">
+
+        <label class="ingredient">
+          <input type="checkbox" value="Chocolate"> 🍫 Chocolate
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Strawberry"> 🍓 Strawberry
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Caramel"> 🍯 Caramel
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Oreo"> 🍪 Oreo
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Mint"> 🌿 Mint
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Chilli"> 🌶️ Chilli
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Blueberry"> 🫐 Blueberry
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Vanilla"> 🍦 Vanilla
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Honey"> 🍯 Honey
+        </label>
+
+        <label class="ingredient">
+          <input type="checkbox" value="Coconut"> 🥥 Coconut
+        </label>
+
+      </div>
+
+      <label>Sweetness Level</label>
+      <select id="sweetness">
+        <option>Low</option>
+        <option selected>Medium</option>
+        <option>High</option>
+      </select>
+
+      <button class="btn generate" onclick="createDrink()">
+        ✨ Generate My Drink
+      </button>
+
+      <div class="result" id="result"></div>
+
+    </div>
+
+    <!-- MENU PREVIEW -->
+
+    <div class="panel">
+
+      <h3>🎨 Menu Designer</h3>
+
+      <label>Your Café Name</label>
+      <input type="text" id="cafeName"
+      placeholder="Enter your café name">
+
+      <label>Choose Menu Theme</label>
+
+      <select id="theme">
+        <option value="classic">Classic Brown</option>
+        <option value="pink">Pink Aesthetic</option>
+        <option value="dark">Midnight Black</option>
+        <option value="green">Forest Green</option>
+      </select>
+
+      <button class="btn generate" onclick="generateMenu()">
+        🎨 Generate My Menu
+      </button>
+
+      <div class="preview" id="preview">
+        <div class="preview-box">
+          <div class="tag">EST. 2026</div>
+          <h2>YOUR CAFÉ</h2>
+          <p>MENU COLLECTION</p>
+          <br>
+          <div class="line">
+            <span>Caramel Cloud</span><b>₹149</b>
+          </div>
+          <div class="line">
+            <span>Chocolate Dream</span><b>₹169</b>
+          </div>
+          <div class="line">
+            <span>Berry Splash</span><b>₹139</b>
+          </div>
+          <br>
+          <p>Made with Love ♡</p>
+        </div>
+      </div>
+
+      <button class="btn generate" onclick="downloadMenu()">
+        ⬇ Download / Print Menu
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="logo">AI <span>CAFÉ.</span></div>
+  <p>Where imagination meets every sip.</p>
+  <p>© 2026 AI Café. Created with creativity and coffee.</p>
+</footer>
+
+<script>
+
+// DRINK GENERATOR
+
+function createDrink() {
+
+  const drink = document.getElementById("drink").value;
+  const sweetness = document.getElementById("sweetness").value;
+
+  const selected = [
+    ...document.querySelectorAll(
+      '.ingredients input:checked'
+    )
+  ].map(item => item.value);
+
+  if (selected.length === 0) {
+    alert("Please select at least one ingredient!");
+    return;
+  }
+
+  const names = [
+    "Galaxy Dream",
+    "Midnight Magic",
+    "Cosmic Fusion",
+    "Golden Bliss",
+    "Mystic Splash",
+    "Velvet Paradise",
+    "Crazy Moon",
+    "Sunset Secret"
+  ];
+
+  const descriptions = [
+    "A magical flavour combination that surprises your taste buds.",
+    "An extraordinary blend made for adventurous drink lovers.",
+    "A beautiful balance of unexpected flavours.",
+    "A signature creation with a delicious twist.",
+    "A refreshing masterpiece from your imagination."
+  ];
+
+  const name = names[Math.floor(Math.random() * names.length)];
+
+  const description =
+    descriptions[Math.floor(Math.random() * descriptions.length)];
+
+  const price = 99 + selected.length * 15;
+
+  const result = document.getElementById("result");
+
+  result.style.display = "block";
+
+  result.innerHTML = `
+    <div class="tag">YOUR AI CREATION</div>
+    <h2>✨ ${name}</h2>
+    <p><b>Drink:</b> ${drink}</p>
+    <p><b>Ingredients:</b> ${selected.join(", ")}</p>
+    <p><b>Sweetness:</b> ${sweetness}</p>
+    <p><b>AI Description:</b> ${description}</p>
+    <h3 style="color:#a65f32">Price: ₹${price}</h3>
+    <p>❤️ Created specially in your virtual café!</p>
+  `;
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}
+
+
+// MENU DESIGNER
+
+function generateMenu() {
+
+  const cafeName =
+    document.getElementById("cafeName").value.trim();
+
+  const theme =
+    document.getElementById("theme").value;
+
+  if (!cafeName) {
+    alert("Please enter your café name!");
+    return;
+  }
+
+  const themes = {
+    classic: ["#39251d", "#e9c59c", "#fff"],
+    pink: ["#f5dce3", "#773e50", "#542d3b"],
+    dark: ["#171717", "#f2c078", "#fff"],
+    green: ["#1d392c", "#d6c39b", "#fff"]
+  };
+
+  const [background, accent, text] = themes[theme];
+
+  const preview = document.getElementById("preview");
+
+  preview.style.backgroundImage = "none";
+  preview.style.backgroundColor = background;
+
+  preview.innerHTML = `
+    <div class="preview-box"
+      style="background:${background};color:${text};
+      border-color:${accent};outline-color:${accent}">
+
+      <div style="color:${accent}">EST. 2026</div>
+
+      <h2 style="color:${accent}">${escapeHTML(cafeName)}</h2>
+
+      <p>OUR SPECIAL MENU</p>
+
+      <br>
+
+      <div class="line">
+        <span>Caramel Cloud</span><b>₹149</b>
+      </div>
+
+      <div class="line">
+        <span>Chocolate Dream</span><b>₹169</b>
+      </div>
+
+      <div class="line">
+        <span>Berry Splash</span><b>₹139</b>
+      </div>
+
+      <div class="line">
+        <span>Midnight Oreo</span><b>₹179</b>
+      </div>
+
+      <div class="line">
+        <span>Galaxy Coffee</span><b>₹129</b>
+      </div>
+
+      <br>
+
+      <p style="color:${accent}">MADE WITH LOVE ♡</p>
+    </div>
+  `;
+}
+
+
+// SAFE TEXT
+
+function escapeHTML(value) {
+  return value.replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
+
+
+// DOWNLOAD MENU
+
+function downloadMenu() {
+
+  const content = document.getElementById("preview").innerHTML;
+
+  const printWindow = window.open("", "_blank");
+
+  if (!printWindow) {
+    alert("Please allow pop-ups to print your menu.");
+    return;
+  }
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>AI Café Menu</title>
+      <style>
+        body {
+          font-family: Arial;
+          display: flex;
+          justify-content: center;
+          padding: 50px;
+          background: white;
+        }
+        .preview {
+          width: 400px;
+        }
+        .preview-box {
+          border: 2px solid #c47b46;
+          padding: 35px;
+          text-align: center;
+          width: 330px;
+          box-sizing: border-box;
+        }
+        .line {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px dotted;
+          padding: 12px 0;
+        }
+        @media print {
+          body { padding: 0; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="preview">${content}</div>
+      <script>
+        window.onload = function() {
+          window.print();
+        };
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+}
+
+</script>
+
+</body>
+</html>
